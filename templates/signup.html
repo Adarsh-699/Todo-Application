@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="box d-flex justify-content-center">
+      <div
+        class="form-body bg-transparent border rounded-4 p-4"
+        style="margin-top: 50px"
+      >
+        <h2 class="text-center mb-4">SignUp</h2>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="name d-inline">
+            <input
+              type="text"
+              placeholder="First Name"
+              class="rounded-pill border p-2 my-3"
+              style="outline: 0"
+              name="fname"
+              value="{{ fname }}"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="rounded-pill border p-2"
+              style="outline: 0"
+              name="lname"
+              value="{{ lname }}"
+              required
+            />
+          </div>
+          <div class="d-flex flex-column gap-4 mt-2">
+            <input
+              type="text"
+              placeholder="Email"
+              class="rounded-pill border p-2"
+              style="outline: 0"
+              name="username"
+              value="{{ username }}"
+              required
+            />
+            <div class="position-relative">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                class="rounded-pill border p-2"
+                style="outline: 0; width: 100%"
+                name="password"
+                required
+              />
+              <i
+                id="eyeicon"
+                class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y p-3"
+              ></i>
+            </div>
+            <div class="position-relative">
+              <input
+                type="Password"
+                id="password1"
+                placeholder="Confirm Password"
+                class="rounded-pill border p-2"
+                style="outline: 0; width: 100%"
+                name="password2"
+                required
+              />
+              <i
+                id="eyeicon1"
+                class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y p-3"
+              ></i>
+            </div>
+            {% if messages %}
+            <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <input
+              type="submit"
+              value="SignUp"
+              class="mx-auto border p-2 bg-light"
+              style="outline: 0"
+            />
+          </div>
+        </form>
+        <a
+          href="{% url 'signin' %}"
+          class="d-flex justify-content-center mt-3 text-decoration-none"
+        >
+          If you are an existing user? Login
+        </a>
+      </div>
+    </div>
+    <script>
+      let eyeicon = document.getElementById("eyeicon");
+      let eyeicon1 = document.getElementById("eyeicon1");
+      let password = document.getElementById("password");
+      let password1 = document.getElementById("password1");
+
+      eyeicon.onclick = function () {
+        if (password.type == "password") {
+          password.type = "text";
+          eyeicon.classList.remove("bi-eye-slash");
+          eyeicon.classList.add("bi-eye");
+        } else {
+          password.type = "password";
+          eyeicon.classList.remove("bi-eye");
+          eyeicon.classList.add("bi-eye-slash");
+        }
+      };
+
+      eyeicon1.onclick = function () {
+        if (password1.type == "password") {
+          password1.type = "text";
+          eyeicon1.classList.remove("bi-eye-slash");
+          eyeicon1.classList.add("bi-eye");
+        } else {
+          password1.type = "password";
+          eyeicon1.classList.remove("bi-eye");
+          eyeicon1.classList.add("bi-eye-slash");
+        }
+      };
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
